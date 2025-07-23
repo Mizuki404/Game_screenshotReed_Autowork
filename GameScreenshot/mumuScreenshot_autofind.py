@@ -67,7 +67,6 @@ if template is None:
 
 # 3. 获取当前屏幕截图
 
-
 # 4. 使用模板匹配
 result = cv2.matchTemplate(screenshot, template, cv2.TM_CCOEFF_NORMED)
 min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(result)
