@@ -1,3 +1,4 @@
+# filepath: d:\Python-Autogamg\Game_screenshotReed_Autowork\core\start_icon_detector.py
 import cv2
 import os
 
