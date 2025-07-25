@@ -31,7 +31,7 @@ class MainWindow(QMainWindow):
         layout.addWidget(self.capture_button)
 
         layout.addWidget(self.label)
-        self.capture_button = QPushButton("启动明日方舟图标", self)
+        self.capture_button = QPushButton("点击已经识别的图标", self)
         self.capture_button.clicked.connect(self.tap_screen)
         layout.addWidget(self.capture_button)
 
@@ -65,7 +65,7 @@ class MainWindow(QMainWindow):
     def tap_screen(self):
             
             try:
-                self.label.setText("正在打开明日方舟...")
+                self.label.setText("正在点击...")
                
                 self.tapscreen_tool.tap_screen(self.last_detected_x, self.last_detected_y)
                 self.label.setText(f"已点击按钮: ({self.last_detected_x}, {self.last_detected_y})")
