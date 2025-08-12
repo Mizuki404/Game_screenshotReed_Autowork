@@ -2,7 +2,7 @@ import sys
 import cv2
 import os
 from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton, QLabel, QVBoxLayout, QWidget, QFileDialog
-from core import MumuScreenshot, IconDetector, Showdetector, Tapscreen
+from core import MumuScreenshot, IconDetector, Showdetector, Tapscreen, Autorecruitment
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -12,6 +12,7 @@ class MainWindow(QMainWindow):
 
         self.screenshot_tool = MumuScreenshot()
         self.tapscreen_tool = Tapscreen()
+        self.autorecruitment_tool = Autorecruitment()
         template_path = os.path.join(os.path.dirname(__file__), "templates", "button_template.png")
         self.detector = IconDetector(template_path)
         self.display = Showdetector(output_dir="test")
@@ -33,6 +34,11 @@ class MainWindow(QMainWindow):
         layout.addWidget(self.label)
         self.capture_button = QPushButton("点击已经识别的图标", self)
         self.capture_button.clicked.connect(self.tap_screen)
+        layout.addWidget(self.capture_button)
+
+        layout.addWidget(self.label)
+        self.capture_button = QPushButton("自动公招", self)
+        self.capture_button.clicked.connect(self.auto_Public_Recruitment)
         layout.addWidget(self.capture_button)
 
         container = QWidget()
@@ -71,6 +77,14 @@ class MainWindow(QMainWindow):
                 self.label.setText(f"已点击按钮: ({self.last_detected_x}, {self.last_detected_y})")
             except Exception as e:
                 self.label.setText(f"点击失败: {str(e)}")
+        
+    def auto_Public_Recruitment(self):
+        try:
+            self.label.setText("正在执行自动公招...")
+            self.autorecruitment_tool.run()
+            self.label.setText("自动公招执行完成")
+        except Exception as e:
+            self.label.setText(f"自动公招失败: {str(e)}")
         
 
 
