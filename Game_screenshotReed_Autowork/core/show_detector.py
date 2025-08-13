@@ -29,3 +29,5 @@ class Showdetector:
             print(f"已保存标记图像到: {save_path}")
         else:
             print(f"无法保存图像到: {save_path}")
+
+default_display = Showdetector()
